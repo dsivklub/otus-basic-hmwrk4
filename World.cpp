@@ -17,7 +17,7 @@ World::World(const std::string& worldFilePath) {
     stream >> topLeft >> bottomRight;
     physics.setWorldBox(topLeft, bottomRight);
 
-    Ball ball{};
+    Ball ball;
     while (stream.peek(), stream.good()) {
         // Читаем координаты центра шара (x, y) и вектор
             stream >> ball;

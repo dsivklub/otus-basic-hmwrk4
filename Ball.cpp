@@ -1,22 +1,13 @@
 #include "Ball.hpp"
 #include <cmath>
-#include <iostream>
 
 const double PI = 3.1415;
 
 Ball::Ball(Point center, Velocity v, Color color, double radius, bool isCollidable):
-    m_center{center}, m_velocity{v}, m_color{color}, m_radius{radius}, m_isCollidable{isCollidable}
-    {}
-
-Ball::Ball(double x, double y, double vx, double vy, double red, double green,
-    double blue, double radius, bool isCollidable):
-    m_radius{radius}, m_isCollidable{isCollidable}
-{
-    m_center = Point(x, y);
-    m_velocity = Velocity{Point{vx, vy}};
-    m_color = Color(red, green, blue);
-}
-
+    m_velocity{v}, m_center{center}, m_radius{radius}, m_color{color}, m_isCollidable{isCollidable}
+    {
+        calculateMass();    
+    }
 /**
  * Задает скорость объекта
  * @param velocity новое значение скорости
@@ -75,9 +66,12 @@ double Ball::getRadius() const {
  * плотностью. В этом случае масса в условных единицах
  * эквивалентна объему: PI * radius^3 * 4. / 3.
  */
-double Ball::getMass() const {
-    double radius = getRadius();
-    return 4./3. * PI * radius * radius * radius;
+void Ball::calculateMass() {
+    m_mass = 4./3. * PI * m_radius * m_radius * m_radius;
+}
+
+ double Ball::getMass() const {
+    return m_mass;
 }
 
 bool Ball::getIsCollidable() const {
@@ -86,5 +80,6 @@ bool Ball::getIsCollidable() const {
 
 std::istream& operator>>(std::istream& stream, Ball& ball) {
     stream >> ball.m_center >> ball.m_velocity >> ball.m_color >> ball.m_radius >> std::boolalpha >> ball.m_isCollidable;
+    ball.calculateMass();
     return stream;
 }

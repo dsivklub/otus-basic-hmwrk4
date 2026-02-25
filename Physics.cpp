@@ -1,3 +1,4 @@
+#include <ctime>
 #include "Physics.hpp"
 
 double dot(const Point& lhs, const Point& rhs) {
@@ -40,7 +41,6 @@ void Physics::collideBalls(std::vector<Ball>& balls, std::vector<Dust>& vDust) c
 
                         // точка на пересечении центров
                         Point aCenter = a->getCenter();
-                        Point bCenter = b->getCenter();
                         double aRad = a->getRadius();
                         Point pIntersection{aCenter.x + aRad * dx / d, aCenter.y + aRad * dy / d};
                         
@@ -100,7 +100,7 @@ void Physics::move(std::vector<Ball>& balls) const {
 }
 
 void Physics::moveDust(std::vector<Dust>& vDust) const{
-    for (int i = 0; i < vDust.size();) {
+    for (size_t i = 0; i < vDust.size();) {
         Point newPos =
             vDust[i].getCenter() + vDust[i].getVelocity().vector() * timePerTick;
         vDust[i].setCenter(newPos);

@@ -6,8 +6,6 @@
 class Ball {
 public:
     Ball(Point center, Velocity v, Color color, double radius, bool isCollidable);
-    Ball(double x, double y, double vx, double vy, double red, double green,
-        double blue, double radius, bool isCollidable);
     Ball() = default;
     void setVelocity(const Velocity& velocity);
     Velocity getVelocity() const;
@@ -25,6 +23,9 @@ private:
     double m_radius;
     Color m_color;
     bool m_isCollidable;
+    double m_mass;
+
+    void calculateMass();
 };
 
 std::istream& operator>>(std::istream& stream, Ball& ball);
