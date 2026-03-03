@@ -3,7 +3,7 @@
 
 const double PI = 3.1415;
 
-Ball::Ball(Point center, Velocity v, Color color, double radius, bool isCollidable):
+Ball::Ball(const Point& center, const Velocity& v, const Color& color, double radius, bool isCollidable):
     m_velocity{v}, m_center{center}, m_radius{radius}, m_color{color}, m_isCollidable{isCollidable}
     {
         calculateMass();    
@@ -70,7 +70,7 @@ void Ball::calculateMass() {
     m_mass = 4./3. * PI * m_radius * m_radius * m_radius;
 }
 
- double Ball::getMass() const {
+double Ball::getMass() const {
     return m_mass;
 }
 

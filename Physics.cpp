@@ -24,8 +24,9 @@ void Physics::update(std::vector<Ball>& balls, std::vector<Dust>& vDust, const s
 
 void Physics::collideBalls(std::vector<Ball>& balls, std::vector<Dust>& vDust) const {
     for (auto a = balls.begin(); a != balls.end(); ++a) {
+        bool isColliableA = a->getIsCollidable();
         for (auto b = std::next(a); b != balls.end(); ++b)  {
-            if (a->getIsCollidable() && b->getIsCollidable()) {
+            if (isColliableA && b->getIsCollidable()) {
                 const double distanceBetweenCenters2 =
                     distance2(a->getCenter(), b->getCenter());
                 const double collisionDistance = a->getRadius() + b->getRadius();

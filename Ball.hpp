@@ -5,7 +5,7 @@
 
 class Ball {
 public:
-    Ball(Point center, Velocity v, Color color, double radius, bool isCollidable);
+    Ball(const Point& center, const Velocity& v, const Color& color, double radius, bool isCollidable);
     Ball() = default;
     void setVelocity(const Velocity& velocity);
     Velocity getVelocity() const;
@@ -20,10 +20,10 @@ public:
 private:
     Velocity m_velocity;
     Point m_center;
-    double m_radius;
+    double m_radius{0.};
     Color m_color;
-    bool m_isCollidable;
-    double m_mass;
+    bool m_isCollidable{false};
+    double m_mass{0.};
 
     void calculateMass();
 };
