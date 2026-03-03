@@ -8,7 +8,7 @@ const int MAX_DUST_VELOCITY{385};
 
 class Dust : public Ball {
 public:
-    Dust(Point center, Point velocity):
+    Dust(const Point& center, const Point& velocity):
         Ball{center, velocity, DEFAULT_DUST_COLOR, DEFAULT_DUST_RADIUS, false},
         m_liveTime{DEFAULT_DUST_LIVE_TIME}
         {};
